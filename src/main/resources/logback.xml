@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.springframework.transaction" level="INFO"/>
+    <logger name="com.zaxxer" level="WARN"/>
+
+    <logger name="se.cockroachdb" level="DEBUG">
+    </logger>
+
+    <logger name="se.cockroachdb.SQL_TRACE" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>
+

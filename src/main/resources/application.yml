@@ -1,0 +1,60 @@
+########################
+# Spring boot properties
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+########################
+spring:
+  config:
+    # Import user overrides
+    import: optional:file:./config/
+  profiles:
+    active: default
+  output:
+    ansi:
+      enabled: ALWAYS
+  #############################
+  shell:
+    command:
+      stacktrace:
+        enabled: true
+      version:
+        enabled: true
+        showBuildName: true
+        showGitBranch: true
+    script:
+      enabled: true
+    interactive:
+      enabled: true
+    noninteractive:
+      enabled: false
+    history:
+      name: order.history
+  ##############################
+  flyway:
+    enabled: true
+    clean-on-validation-error: true
+    baseline-on-migrate: true
+    clean-disabled: false
+  datasource:
+    url: jdbc:postgresql://localhost:26257/defaultdb?sslmode=disable
+    driver-class-name: org.postgresql.Driver
+    username: root
+    password:
+    hikari:
+      pool-name: orders-pool
+      connection-init-sql: SELECT 1
+      initialization-fail-timeout: -1
+      connection-timeout: 5000
+      validation-timeout: 20000
+      max-lifetime: 180000
+      idle-timeout: 60000
+      maximum-pool-size: 15
+      minimum-idle: 0
+      transaction-isolation: TRANSACTION_SERIALIZABLE
+      auto-commit: true
+      data-source-properties:
+        reWriteBatchedInserts: true
+        application_name: OrderSystem
+#############################
+logging:
+  pattern:
+    console: "%clr(%d{${LOG_DATEFORMAT_PATTERN:yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr([%logger{39}]){cyan} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
