@@ -3,16 +3,26 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
-    <logger name="org.springframework" level="INFO"/>
-    <logger name="org.springframework.transaction" level="INFO"/>
-    <logger name="com.zaxxer" level="WARN"/>
-
     <logger name="se.cockroachdb" level="DEBUG">
     </logger>
 
     <logger name="se.cockroachdb.SQL_TRACE" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE"/>
     </logger>
+
+    <springProfile name="verbose">
+        <logger name="org.springframework.transaction" level="DEBUG"/>
+        <logger name="org.springframework.transaction.interceptor" level="TRACE"/>
+        <logger name="org.springframework.orm.jpa" level="TRACE"/>
+        <logger name="com.zaxxer.hikari" level="TRACE"/>
+    </springProfile>
+
+    <springProfile name="!verbose">
+        <logger name="org.springframework" level="INFO"/>
+        <logger name="org.springframework.transaction" level="INFO"/>
+        <logger name="org.springframework.transaction.interceptor" level="INFO"/>
+        <logger name="com.zaxxer.hikari" level="INFO"/>
+    </springProfile>
 
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>

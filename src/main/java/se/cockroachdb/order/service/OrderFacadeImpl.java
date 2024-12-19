@@ -89,7 +89,7 @@ public class OrderFacadeImpl implements OrderFacade {
 
     @Override
     @TransactionImplicit
-    public void createOrders(int numOrders, String tags, boolean badly) {
+    public void createOrders(int numOrders, String tags, boolean badly, int idleTime) {
         Assertions.assertNoTransaction();
 
         List<Product> productList = inventoryService.findRandomProducts(2);
@@ -115,8 +115,8 @@ public class OrderFacadeImpl implements OrderFacade {
                         .build()
                 ), 16).forEach(batch -> {
 
-            if (badly) {
-                orderService.placeOrdersBadly(batch);
+            if (badly || idleTime > 0) {
+                orderService.placeOrdersBadly(batch, idleTime);
             } else {
                 orderService.placeOrders(batch);
             }

@@ -15,7 +15,7 @@ public interface OrderFacade {
 
     void createCustomers(int numCustomers);
 
-    void createOrders(int numCustomers, String tags, boolean badly);
+    void createOrders(int numOrders, String tags, boolean badly, int idleTime);
 
     Page<Product> findProducts(Pageable pageable);
 

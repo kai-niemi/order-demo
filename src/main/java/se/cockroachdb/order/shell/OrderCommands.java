@@ -27,9 +27,11 @@ public class OrderCommands extends AbstractInteractiveCommand {
     @ShellMethod(value = "Create purchase orders", key = {"create-orders", "co"})
     public void createOrders(@ShellOption(help = "number of orders", defaultValue = "10") Integer count,
                              @ShellOption(help = "order tags", defaultValue = "random") String tags,
-                             @ShellOption(help = "use bad transaction semantics") Boolean badly) {
+                             @ShellOption(help = "use bad transaction semantics") Boolean badly,
+                             @ShellOption(help = "transaction completion delay in seconds", defaultValue = "0") Integer idleTime
+    ) {
         logger.info("Creating %d orders...".formatted(count));
-        orderFacade.createOrders(count, tags, badly);
+        orderFacade.createOrders(count, tags, badly, idleTime);
     }
 
     @ShellMethod(value = "List purchase orders", key = {"list-orders", "lo"})

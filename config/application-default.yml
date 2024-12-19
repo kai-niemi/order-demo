@@ -11,7 +11,7 @@ spring:
     username: root
     password:
     hikari:
-      connection-timeout: 5000
+      connection-timeout: 5001
       validation-timeout: 20000
       max-lifetime: 180000
       idle-timeout: 60000
@@ -20,6 +20,7 @@ spring:
       transaction-isolation: TRANSACTION_SERIALIZABLE
       auto-commit: true
       data-source-properties:
+        ApplicationName: Order Demo
         reWriteBatchedInserts: true
 
 ---

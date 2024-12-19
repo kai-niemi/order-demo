@@ -5,3 +5,4 @@
    ||     ||
 ${AnsiColor.BRIGHT_GREEN}Active profiles: ${AnsiColor.BRIGHT_YELLOW}${spring.profiles.active}${AnsiColor.DEFAULT}
 ${AnsiColor.BRIGHT_GREEN}   Database URL: ${AnsiColor.BRIGHT_YELLOW}${spring.datasource.url}${AnsiColor.DEFAULT}
+${AnsiColor.BRIGHT_GREEN}    Auto-commit: ${AnsiColor.BRIGHT_YELLOW}${spring.datasource.hikari.auto-commit}${AnsiColor.DEFAULT}

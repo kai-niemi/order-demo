@@ -13,18 +13,22 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 import org.springframework.shell.jline.PromptProvider;
 import org.springframework.util.StringUtils;
 
 @Configuration
+@EnableConfigurationProperties
 @EnableAutoConfiguration(exclude = {
         TransactionAutoConfiguration.class,
         DataSourceTransactionManagerAutoConfiguration.class,
         DataSourceAutoConfiguration.class
 })
-@ComponentScan(basePackages = "se.cockroachdb.order")
+@EnableJdbcRepositories(basePackageClasses = {Application.class})
+@ComponentScan(basePackageClasses = Application.class)
 public class Application implements PromptProvider {
     @Override
     public AttributedString getPrompt() {
@@ -64,7 +68,7 @@ public class Application implements PromptProvider {
                 .web(WebApplicationType.NONE)
                 .logStartupInfo(true)
                 .profiles(profiles.toArray(new String[0]))
-                .run(passThroughArgs.toArray(new String[]{}));
+                .run(passThroughArgs.toArray(new String[] {}));
     }
 }
 
