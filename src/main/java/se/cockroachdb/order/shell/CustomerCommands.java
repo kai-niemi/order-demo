@@ -18,7 +18,7 @@ import se.cockroachdb.order.domain.Customer;
 import se.cockroachdb.order.service.OrderFacade;
 
 @ShellComponent
-@ShellCommandGroup("customer")
+@ShellCommandGroup("02. Customer Domain Aggregate")
 public class CustomerCommands extends AbstractInteractiveCommand {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 

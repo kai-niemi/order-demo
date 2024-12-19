@@ -12,35 +12,22 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.shell.standard.ShellCommandGroup;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
-import org.springframework.shell.standard.ShellOption;
 import org.springframework.shell.standard.commands.Quit;
 
 import ch.qos.logback.classic.Level;
 
 import se.cockroachdb.order.config.DataSourceConfig;
-import se.cockroachdb.order.service.OrderFacade;
 
 @ShellComponent
+@ShellCommandGroup("00. Admin Commands")
 public class AdminCommands implements Quit.Command {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private ConfigurableApplicationContext applicationContext;
-
-    @Autowired
-    private OrderFacade orderFacade;
-
-    @ShellMethod(value = "Purge all data", key = {"purge"})
-    public void purgeAll(@ShellOption(help = "confirm") Boolean confirm) {
-        if (confirm) {
-            logger.info("Purge all order data...");
-            orderFacade.purgeAll();
-        } else {
-            logger.warn("Please confirm");
-        }
-    }
 
     @ShellMethod(value = "Toggle SQL trace logging (verbose)", key = {"sql-trace", "t"})
     public void toggleSqlTraceLogging() {

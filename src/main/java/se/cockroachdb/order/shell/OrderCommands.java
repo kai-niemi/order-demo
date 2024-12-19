@@ -19,7 +19,7 @@ import se.cockroachdb.order.domain.Order;
 import se.cockroachdb.order.service.OrderFacade;
 
 @ShellComponent
-@ShellCommandGroup("order")
+@ShellCommandGroup("04. Order Domain Aggregate")
 public class OrderCommands extends AbstractInteractiveCommand {
     @Autowired
     private OrderFacade orderFacade;
@@ -31,7 +31,7 @@ public class OrderCommands extends AbstractInteractiveCommand {
                              @ShellOption(help = "transaction completion delay in seconds", defaultValue = "0") Integer idleTime
     ) {
         logger.info("Creating %d orders...".formatted(count));
-        orderFacade.createOrders(count, tags, badly, idleTime);
+        orderFacade.createOrders(count, tags, badly);
     }
 
     @ShellMethod(value = "List purchase orders", key = {"list-orders", "lo"})

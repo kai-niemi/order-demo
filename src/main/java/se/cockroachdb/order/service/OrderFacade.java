@@ -1,21 +1,21 @@
 package se.cockroachdb.order.service;
 
-import se.cockroachdb.order.domain.Customer;
-import se.cockroachdb.order.domain.Order;
-import se.cockroachdb.order.domain.Product;
-
 import java.math.BigDecimal;
 import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import se.cockroachdb.order.domain.Customer;
+import se.cockroachdb.order.domain.Order;
+import se.cockroachdb.order.domain.Product;
+
 public interface OrderFacade {
     void createProductInventory(int numProducts);
 
     void createCustomers(int numCustomers);
 
-    void createOrders(int numOrders, String tags, boolean badly, int idleTime);
+    void createOrders(int numOrders, String tags, boolean badly);
 
     Page<Product> findProducts(Pageable pageable);
 

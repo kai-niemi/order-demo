@@ -16,7 +16,7 @@ import se.cockroachdb.order.domain.Product;
 import se.cockroachdb.order.service.OrderFacade;
 
 @ShellComponent
-@ShellCommandGroup("inventory")
+@ShellCommandGroup("03. Inventory Domain Aggregate")
 public class InventoryCommands extends AbstractInteractiveCommand {
     @Autowired
     private OrderFacade orderFacade;

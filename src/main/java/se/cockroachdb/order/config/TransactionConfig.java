@@ -10,8 +10,10 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import se.cockroachdb.order.aspect.AdvisorOrder;
+
 @Configuration
-@EnableTransactionManagement
+@EnableTransactionManagement(order = AdvisorOrder.TRANSACTION_MANAGER_ADVISOR)
 public class TransactionConfig {
     @Bean
     public PlatformTransactionManager transactionManager(@Autowired DataSource dataSource) {
